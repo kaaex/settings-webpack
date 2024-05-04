@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BuildOptions } from "./types/types";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 // import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
@@ -20,6 +21,7 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
       chunkFilename: "css/[name].[contenthash:8].css",
     }),
     new ForkTsCheckerWebpackPlugin(),
+    new ReactRefreshPlugin(),
     // new BundleAnalyzerPlugin()
   ];
 }
@@ -61,6 +63,11 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
       ForkTsCheckerWebpackPlugin() - выносит проверку типов в отдельный процесс: не нагружая сборку
     }
     new ForkTsCheckerWebpackPlugin(),
+    
+    TODO: `ReactRefreshPlugin()` - {
+      ReactRefreshPlugin() - позволяет менять пользовательский интерфейс без перезагрузки страницы
+    }
+    new ReactRefreshPlugin(),
 
     TODO: `BundleAnalyzerPlugin()` - {
       BundleAnalyzerPlugin() - плагин который показывает размер бандла визуально
