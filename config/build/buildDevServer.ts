@@ -6,6 +6,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     port: options.port ?? 3030,
     open: true,
     historyApiFallback: true,
+    hot: true, 
   };
 }
 
@@ -17,6 +18,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
   devServer: {
     port: 5000,
     open: true,
+    hot: true - позволяет менять пользовательский интерфейс без перезагрузки страницы
   },
 
 } */
