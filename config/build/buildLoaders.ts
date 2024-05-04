@@ -11,16 +11,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
   };
 
   const svgrLoader = {
-    test: /\.svg$/,
-    use: ["@svgr/webpack"],
+    test: /\.svg$/i,
+    use: [{ loader: "@svgr/webpack", options: { icon: true } }],
   };
 
   const scssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      // Creates `style` nodes from JS strings
       MiniCssExtractPlugin.loader,
-      // Translates CSS into CommonJS
       {
         loader: "css-loader",
         options: {
@@ -29,7 +27,6 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
           },
         },
       },
-      // Compiles Sass to CSS
       "sass-loader",
     ],
   };
@@ -65,10 +62,13 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     }
 
     rules: [
+      Лоудер для обработки assets
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
+
+      Лоудер для обработки CSS файлов
       {
           test: /\.css$/i,
           use: [ 
@@ -84,11 +84,19 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
             "css-loader"
           ],
       },
+
+      Лоудер для поддержки тайп скрипта
       {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
+
+      Лоудер позволяет использовать svg файлы в стиле компонентов
+      {
+        test: /\.svg$/i,
+        use: [{ loader: "@svgr/webpack", options: { icon: true } }],
+      };
     ],
   },
 

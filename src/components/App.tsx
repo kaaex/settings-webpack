@@ -12,7 +12,7 @@ export const App = () => {
   return (
     <div>
       <img width={100} height={100} src={backgroundImg} alt="" />
-      <Profile />
+      <Profile width={200} height={200} />
       <Link to={"/about"}>about</Link>
       <br />
       <Link to={"/shop"}>shop</Link>
