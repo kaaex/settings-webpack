@@ -33,7 +33,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 
   const tsLoader = {
     test: /\.tsx?$/,
-    use: "ts-loader",
+    use: [
+      {
+        loader: "ts-loader",
+        options: {
+          transpileOnly: true,
+        },
+      },
+    ],
     exclude: /node_modules/,
   };
 
@@ -88,9 +95,16 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
       Лоудер для поддержки тайп скрипта
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true, - ключ позволяет исключать проверку тайп скрипта при билде проекта
+            },
+          },
+        ],
         exclude: /node_modules/,
-      },
+      };
 
       Лоудер позволяет использовать svg файлы в стиле компонентов
       {

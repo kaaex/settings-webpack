@@ -1,8 +1,9 @@
-import { Configuration } from "webpack";
+import { Configuration, DefinePlugin } from "webpack";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BuildOptions } from "./types/types";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 // import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
@@ -10,11 +11,15 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
     new HtmlWebpackPlugin({
       template: options.paths.html,
     }),
+    new DefinePlugin({
+      _PLATFORM_: JSON.stringify(options.platform),
+    }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash:8].css",
       chunkFilename: "css/[name].[contenthash:8].css",
     }),
+    new ForkTsCheckerWebpackPlugin(),
     // new BundleAnalyzerPlugin()
   ];
 }
@@ -34,6 +39,13 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
       template: path.resolve(__dirname, "public", "index.html"), 
     }),
 
+    TODO: `DefinePlugin` - {
+      DefinePlugin - вебпаковский плагин, задает глобальные переменные
+    }
+    new DefinePlugin({
+      _PLATFORM_: options.platform,
+    }),
+
     TODO: `webpack.ProgressPlugin()` - {
       webpack.ProgressPlugin() - плагин показывает проценты сборки 
        (в продакшн не рекомендуют, поскольку сильно замедляет сборку)
@@ -44,7 +56,16 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
       MiniCssExtractPlugin() - плагин билдит весь css в отдельный файл
     }
     new MiniCssExtractPlugin(),
-    new BundleAnalyzerPlugin(), - плагин который показывает размер бандла визуально
+
+    TODO: `ForkTsCheckerWebpackPlugin()` - {
+      ForkTsCheckerWebpackPlugin() - выносит проверку типов в отдельный процесс: не нагружая сборку
+    }
+    new ForkTsCheckerWebpackPlugin(),
+
+    TODO: `BundleAnalyzerPlugin()` - {
+      BundleAnalyzerPlugin() - плагин который показывает размер бандла визуально
+    }
+    new BundleAnalyzerPlugin(),
   ],
 
 } */
