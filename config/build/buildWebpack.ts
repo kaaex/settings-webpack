@@ -119,6 +119,11 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
     extensions: [".tsx", ".ts", ".js"],
   },
 
+  TODO: `devtool` - {
+    devtool: Отлавливать и дебажить код становится легче 
+  } 
+  devtool: "inline-source-map",
+
   TODO: `devServer` - {
     devServer: помомогает кодить в лайв режиме, то есть не приходится билдить на каждое изменение
   } 

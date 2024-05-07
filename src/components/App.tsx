@@ -4,14 +4,25 @@ import { Link, Outlet } from "react-router-dom";
 import backgroundImg from "../assets/background.png";
 import Profile from "../assets/profile.svg";
 
-// const Button = (width: number) => {
-//   console.log(width);
-// };
+const Button = (width: number) => {
+  console.log(width);
+};
+
+const ButtonTwo = () => {
+  ButtonThree();
+};
+
+const ButtonThree = () => {
+  throw new Error();
+};
 
 export const App = () => {
   const [counter, setCounter] = useState<number>(0);
 
-  const increment = () => setCounter((prev) => prev + 1);
+  const increment = () => {
+    setCounter((prev) => prev + 1);
+    ButtonTwo();
+  };
 
   // if (_PLATFORM_ === "desktop") {
   //   return <div>isDesktop</div>;
